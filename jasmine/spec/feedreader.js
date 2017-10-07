@@ -59,9 +59,8 @@ describe('The menu', function(){
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         it('menu element hidden ', function() {
-             expect(allFeeds).toBeDefined();
-             expect(allFeeds.length).not.toBe(0);
+         it('menu element hidden by default', function() {
+            expect($('body').attr('class')).toBe('menu-hidden');
          });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -69,9 +68,10 @@ describe('The menu', function(){
           * clicked and does it hide when clicked again.
           */
           it('menu element visibile on click ', function() {
-            spyEvent = spyOnEvent('menu-icon-link', "click");
-            $('.menu-icon-link').simulate('click');
-              expect($('.slide-menu').is(':visible')).toBe(true);
+            $('.menu-icon-link').click();
+          expect($('body').attr('class')).not.toBe('menu-hidden');
+             $('.menu-icon-link').click();
+            expect($('body').attr('class')).toBe('menu-hidden');
           });
    });
    describe('Initial Entries', function(){
@@ -83,9 +83,8 @@ describe('The menu', function(){
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('loadFeed ', function() {
-             expect(allFeeds).toBeDefined();
-             expect(allFeeds.length).not.toBe(0);
+         it('feed container has at least 1 entry ', function() {
+             expect('.feed'.length>0).toBe(true);
          });
        });
 
