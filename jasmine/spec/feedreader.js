@@ -83,21 +83,31 @@ describe('The menu', function(){
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('feed container has at least 1 entry ', function() {
-             expect('.feed'.length>0).toBe(true);
+         beforeEach(function(done){
+           loadFeed(0);
+            done();
+         });
+         it('feed container has at least 1 entry ', function(done) {
+             expect($('.feed').children.length>0).toBe(true);
+             done();
          });
        });
 
-         describe('New Feed Selection', function(){
-           /* TODO: Write a new test suite named "New Feed Selection" */
+     describe('New Feed Selection', function(){
+       /* TODO: Write a new test suite named "New Feed Selection" */
 
-               /* TODO: Write a test that ensures when a new feed is loaded
-                * by the loadFeed function that the content actually changes.
-                * Remember, loadFeed() is asynchronous.
-                */
-               it('loadFeed2 ', function() {
-                   expect(allFeeds).toBeDefined();
-                   expect(allFeeds.length).not.toBe(0);
-               });
-             });
+           /* TODO: Write a test that ensures when a new feed is loaded
+            * by the loadFeed function that the content actually changes.
+            * Remember, loadFeed() is asynchronous.
+            */
+            var length =$('.feed').children.length;
+            beforeEach(function(done){
+              loadFeed(length);
+               done();
+            });
+           it('new feed is loaded by the loadFeed  ', function(done) {
+             expect($('.feed').children.length).toBe(length+1);
+             done();
+           });
+         });
 }());
