@@ -104,14 +104,15 @@ describe('The menu', function(){
             var newContent;
             beforeEach(function(done){
               loadFeed(0);
+              done();
               oldContent=$('.feed').html();
-               done();
             });
            it('new feed is loaded by the loadFeed  ', function(done) {
              loadFeed(1);
+             done();
              newContent=$('.feed').html();
              expect(newContent).not.toBe(oldContent);
-             done();
+
            });
          });
 }());
