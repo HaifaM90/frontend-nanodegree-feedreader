@@ -100,14 +100,17 @@ describe('The menu', function(){
             * by the loadFeed function that the content actually changes.
             * Remember, loadFeed() is asynchronous.
             */
-            var length =$('.feed').children.length;
+            var oldContent ,newContent;
             beforeEach(function(done){
-              loadFeed(length);
-               done();
+              loadFeed(0);
+              done();
+             oldContent=$('.feed').html();
             });
            it('new feed is loaded by the loadFeed  ', function(done) {
-             expect($('.feed').children.length).toBe(length+1);
-             done();
+             loadFeed(1);
+             newContent=$('.feed').html();
+             expect(newContent).not.toEqual(oldContent);
+              done();
            });
          });
 }());
