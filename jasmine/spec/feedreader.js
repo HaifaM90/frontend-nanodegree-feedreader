@@ -33,9 +33,9 @@ $(function() {
          */
          it('each feed has url', function() {
              allFeeds.forEach( function(feed){
-               expect(feed['url']).toBeDefined();
-               expect(feed['url']).not.toBe('');
-             })
+               expect(feed.url).toBeDefined();
+               expect(feed.url).not.toBe('');
+             });
          });
 
         /* TODO: Write a test that loops through each feed
@@ -44,9 +44,9 @@ $(function() {
          */
          it('each feed has name', function() {
              allFeeds.forEach( function(feed){
-               expect(feed['name']).toBeDefined();
-               expect(feed['name']).not.toBe('');
-             })
+               expect(feed.name).toBeDefined();
+               expect(feed.name).not.toBe('');
+             });
          });
     });
 
