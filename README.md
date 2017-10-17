@@ -2,6 +2,9 @@
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
 
+# Open project
+1. double click on " index.html" to open it with you default browser and check Jasmine test at the bottom. (all OS)
+2. OR drag " index.html " and drop it over your browser icon (mac OS).
 
 # Test Cases
 1. The first test is to be sure allFeeds array has been defined and have at least one element by compare it's length.

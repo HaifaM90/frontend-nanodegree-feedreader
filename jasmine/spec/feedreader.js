@@ -33,8 +33,7 @@ $(function() {
          */
          it('each feed has url', function() {
              allFeeds.forEach( function(feed){
-               expect(feed.url).toBeDefined();
-               expect(feed.url).not.toBe('');
+               expect(feed.url).toBeTruthy();
              });
          });
 
@@ -44,8 +43,7 @@ $(function() {
          */
          it('each feed has name', function() {
              allFeeds.forEach( function(feed){
-               expect(feed.name).toBeDefined();
-               expect(feed.name).not.toBe('');
+               expect(feed.name).toBeTruthy();
              });
          });
     });
@@ -60,7 +58,7 @@ describe('The menu', function(){
          * hiding/showing of the menu element.
          */
          it('menu element hidden by default', function() {
-            expect($('body').attr('class')).toBe('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -69,9 +67,9 @@ describe('The menu', function(){
           */
           it('menu element visibile on click ', function() {
             $('.menu-icon-link').click();
-          expect($('body').attr('class')).not.toBe('menu-hidden');
+          expect($('body').hasClass('menu-hidden')).not.toBe(true);
              $('.menu-icon-link').click();
-            expect($('body').attr('class')).toBe('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
           });
    });
    describe('Initial Entries', function(){
@@ -84,11 +82,12 @@ describe('The menu', function(){
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
          beforeEach(function(done){
-           loadFeed(0);
-            done();
+           loadFeed(0, function () {
+             done();
+           });
          });
          it('feed container has at least 1 entry ', function(done) {
-             expect($('.feed').children.length>0).toBe(true);
+             expect($('.feed .entry-link .entry').length).toBeGreaterThan(0);
              done();
          });
        });
@@ -102,15 +101,17 @@ describe('The menu', function(){
             */
             var oldContent ,newContent;
             beforeEach(function(done){
-              loadFeed(0);
-              done();
-             oldContent=$('.feed').html();
+              loadFeed(0, function () {
+                oldContent=$('.feed').html();
+                done();
+              });
             });
            it('new feed is loaded by the loadFeed  ', function(done) {
-             loadFeed(1);
-             newContent=$('.feed').html();
-             expect(newContent).not.toEqual(oldContent);
-              done();
+             loadFeed(1, function () {
+                  newContent=$('.feed').html();
+               done();
+             });
+            expect(newContent).not.toEqual(oldContent);
            });
          });
 }());
