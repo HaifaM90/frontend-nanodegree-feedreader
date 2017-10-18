@@ -54,7 +54,7 @@ describe('The menu', function(){
           */
           it('menu element visibile on click ', function() {
             $('.menu-icon-link').click();
-          expect($('body').hasClass('menu-hidden')).not.toBe(true);
+          expect($('body').hasClass('menu-hidden')).toBe(false);
              $('.menu-icon-link').click();
             expect($('body').hasClass('menu-hidden')).toBe(true);
           });
@@ -63,18 +63,16 @@ describe('The menu', function(){
     /* The sixth test is for loadFeed function and to be sure it's work properly by passing the id.
          */
          beforeEach(function(done){
-           loadFeed(0, function () {
-             done();
-           });
+           loadFeed(0, done);
          });
          it('feed container has at least 1 entry ', function(done) {
-             expect($('.feed .entry-link .entry').length).toBeGreaterThan(0);
+             expect($('.feed .entry').length).toBeGreaterThan(0);
              done();
          });
        });
 
      describe('New Feed Selection', function(){
-       /* The seventh test is to check the content has been updated each time loadFeed has been called  
+       /* The seventh test is to check the content has been updated each time loadFeed has been called
             */
             var oldContent ,newContent;
             beforeEach(function(done){
@@ -86,9 +84,10 @@ describe('The menu', function(){
            it('new feed is loaded by the loadFeed  ', function(done) {
              loadFeed(1, function () {
                   newContent=$('.feed').html();
+                expect(newContent).not.toEqual(oldContent);
                done();
              });
-            expect(newContent).not.toEqual(oldContent);
+
            });
          });
 }());
